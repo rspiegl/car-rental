@@ -1,0 +1,12 @@
+<div class="d-flex flex-wrap mb-4">
+    <h1 class="flex-grow-1" i18n="@@rental.add.headline">Add Rental</h1>
+    <div>
+        <a routerLink="/rentals" class="btn btn-secondary" i18n="@@rental.add.back">Back to list</a>
+    </div>
+</div>
+<form [formGroup]="addForm" (ngSubmit)="handleSubmit()">
+    <app-input-row [group]="addForm" field="mileage" rowType="number" i18n-label="@@rental.mileage.label" label="Mileage" />
+    <app-input-row [group]="addForm" field="car" rowType="select" [options]="carValues" i18n-label="@@rental.car.label" label="Car" />
+    <app-input-row [group]="addForm" field="customer" rowType="select" [options]="customerValues" i18n-label="@@rental.customer.label" label="Customer" />
+    <input type="submit" i18n-value="@@rental.add.headline" value="Add Rental" class="btn btn-primary mt-4" />
+</form>

@@ -1,0 +1,39 @@
+<div class="d-flex flex-wrap mb-4">
+    <h1 class="flex-grow-1" i18n="@@customer.list.headline">Customers</h1>
+    <div>
+        <a routerLink="/customers/add" class="btn btn-primary ms-2" i18n="@@customer.list.createNew">Create new Customer</a>
+    </div>
+</div>
+@if (!customers || customers.length === 0) {
+<div i18n="@@customer.list.empty">No Customers could be found.</div>
+} @else {
+<div class="table-responsive">
+    <table class="table table-striped table-hover align-middle">
+        <thead>
+            <tr>
+                <th scope="col" i18n="@@customer.id.label">Id</th>
+                <th scope="col" i18n="@@customer.name.label">Name</th>
+                <th scope="col" i18n="@@customer.age.label">Age</th>
+                <th scope="col" i18n="@@customer.rentals.label">Rentals</th>
+                <th><!-- --></th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (customer of customers; track customer.id) {
+            <tr>
+                <td>{{ customer.id }}</td>
+                <td>{{ customer.name }}</td>
+                <td>{{ customer.age }}</td>
+                <td>{{ customer.rentals?.join(",") }}</td>
+                <td>
+                    <div class="float-end text-nowrap">
+                        <a [routerLink]="['/customers/edit', customer.id]" class="btn btn-sm btn-secondary" i18n="@@customer.list.edit">Edit</a>
+                        <button type="button" (click)="confirmDelete(customer.id!)" class="btn btn-sm btn-secondary" i18n="@@customer.list.delete">Delete</button>
+                    </div>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+}

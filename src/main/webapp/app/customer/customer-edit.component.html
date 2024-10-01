@@ -1,0 +1,19 @@
+<div class="d-flex flex-wrap mb-4">
+    <h1 class="flex-grow-1" i18n="@@customer.edit.headline">Edit Customer</h1>
+    <div>
+        <a routerLink="/customers" class="btn btn-secondary" i18n="@@customer.edit.back">Back to list</a>
+    </div>
+</div>
+<form [formGroup]="editForm" (ngSubmit)="handleSubmit()">
+    <app-input-row [group]="editForm" field="id" rowType="number" i18n-label="@@customer.id.label" label="Id" />
+    <app-input-row [group]="editForm" field="name" i18n-label="@@customer.name.label" label="Name" />
+    <app-input-row [group]="editForm" field="age" rowType="number" i18n-label="@@customer.age.label" label="Age" />
+
+    <div class="form-group">
+        <label i18n="@@customer.rentals.label">Rentals</label>
+        <ul>
+            <li *ngFor="let rental of editForm.value.rentals">{{ rental }}</li>
+        </ul>
+    </div>
+    <input type="submit" i18n-value="@@customer.edit.headline" value="Edit Customer" class="btn btn-primary mt-4" />
+</form>
